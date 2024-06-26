@@ -7,12 +7,12 @@ const createProductIntoDB = async (payload: TProduct) => {
 }
 
 const getAllProductIntoDB = async () => {
-    const res = await productModel.find({});
+    const res = await productModel.findOne({});
     return res;
 }
 
 const getSingleProductIntoDB = async (id: string) => {
-    const res = await productModel.find({ _id: id })
+    const res = await productModel.findOne({ _id: id })
     return res;
 }
 
@@ -21,11 +21,15 @@ const singleProductUpdateIntoDB = async (id: string, payload: TProduct) => {
     return res;
 }
 
-
+const singleProductDeleteIntoDB = async (id: string) => {
+    const res = await productModel.deleteOne({ _id: id });
+    return res;
+}
 
 export const productService = {
     createProductIntoDB,
     getAllProductIntoDB,
     getSingleProductIntoDB,
     singleProductUpdateIntoDB,
+    singleProductDeleteIntoDB,
 }
