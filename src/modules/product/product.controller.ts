@@ -33,8 +33,21 @@ const getSingleProduct = async (req: Request, res: Response) => {
     }
 }
 
+const singleProductUpdate = async (req: Request, res: Response) => {
+    try {
+        const { productId } = req.params;
+        const productData = req.body;
+        await productService.singleProductUpdateIntoDB(productId, productData);
+        res.status(200).json({ success: true, message: 'Product update successfully!', data: productData });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Product fetched unsuccessfully', data: error })
+        console.log(error);
+    }
+}
+
 export const productController = {
     createProduct,
     getAllProduct,
     getSingleProduct,
+    singleProductUpdate,
 }

@@ -12,7 +12,12 @@ const getAllProductIntoDB = async () => {
 }
 
 const getSingleProductIntoDB = async (id: string) => {
-    const res = await productModel.findById({ _id: id })
+    const res = await productModel.find({ _id: id })
+    return res;
+}
+
+const singleProductUpdateIntoDB = async (id: string, payload: TProduct) => {
+    const res = await productModel.findByIdAndUpdate({ _id: id }, { $set: payload })
     return res;
 }
 
@@ -22,4 +27,5 @@ export const productService = {
     createProductIntoDB,
     getAllProductIntoDB,
     getSingleProductIntoDB,
+    singleProductUpdateIntoDB,
 }

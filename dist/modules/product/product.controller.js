@@ -43,8 +43,21 @@ const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
         console.log(error);
     }
 });
+const singleProductUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const productData = req.body;
+        yield product_service_1.productService.singleProductUpdateIntoDB(productId, productData);
+        res.status(200).json({ success: true, message: 'Product update successfully!', data: productData });
+    }
+    catch (error) {
+        res.status(500).json({ success: false, message: 'Product fetched unsuccessfully', data: error });
+        console.log(error);
+    }
+});
 exports.productController = {
     createProduct,
     getAllProduct,
     getSingleProduct,
+    singleProductUpdate,
 };
