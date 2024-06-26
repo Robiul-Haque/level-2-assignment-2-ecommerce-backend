@@ -32,7 +32,19 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         console.log(error);
     }
 });
+const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.productService.getSingleProductIntoDB(productId);
+        res.status(200).json({ success: true, message: 'Product fetched successfully!', data: result });
+    }
+    catch (error) {
+        res.status(500).json({ success: false, message: 'Product fetched unsuccessfully', data: error });
+        console.log(error);
+    }
+});
 exports.productController = {
     createProduct,
     getAllProduct,
+    getSingleProduct,
 };
