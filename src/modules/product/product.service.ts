@@ -26,10 +26,16 @@ const singleProductDeleteIntoDB = async (id: string) => {
     return res;
 }
 
+const searchSingleProductIntoDB = async (productName: string | any) => {
+    const res = await productModel.findOne({ name: productName });
+    return res;
+}
+
 export const productService = {
     createProductIntoDB,
     getAllProductIntoDB,
     getSingleProductIntoDB,
     singleProductUpdateIntoDB,
     singleProductDeleteIntoDB,
+    searchSingleProductIntoDB,
 }

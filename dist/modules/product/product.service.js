@@ -19,15 +19,23 @@ const createProductIntoDB = (payload) => __awaiter(void 0, void 0, void 0, funct
     return res;
 });
 const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield product_model_1.default.find({});
+    const res = yield product_model_1.default.findOne({});
     return res;
 });
 const getSingleProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield product_model_1.default.find({ _id: id });
+    const res = yield product_model_1.default.findOne({ _id: id });
     return res;
 });
 const singleProductUpdateIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.findByIdAndUpdate({ _id: id }, { $set: payload });
+    return res;
+});
+const singleProductDeleteIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield product_model_1.default.deleteOne({ _id: id });
+    return res;
+});
+const searchSingleProductIntoDB = (productName) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield product_model_1.default.findOne({ name: productName });
     return res;
 });
 exports.productService = {
@@ -35,4 +43,6 @@ exports.productService = {
     getAllProductIntoDB,
     getSingleProductIntoDB,
     singleProductUpdateIntoDB,
+    singleProductDeleteIntoDB,
+    searchSingleProductIntoDB,
 };
