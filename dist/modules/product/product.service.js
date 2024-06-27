@@ -34,8 +34,9 @@ const singleProductDeleteIntoDB = (id) => __awaiter(void 0, void 0, void 0, func
     const res = yield product_model_1.default.deleteOne({ _id: id });
     return res;
 });
-const searchSingleProductIntoDB = (productName) => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield product_model_1.default.findOne({ name: productName });
+const searchSingleProductIntoDB = (searchTxt) => __awaiter(void 0, void 0, void 0, function* () {
+    const searchTerm = RegExp(searchTxt, 'i');
+    const res = yield product_model_1.default.find({ $or: [{ name: searchTerm }, { tags: searchTerm }] });
     return res;
 });
 exports.productService = {

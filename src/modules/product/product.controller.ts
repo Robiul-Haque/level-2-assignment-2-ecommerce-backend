@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { productService } from "./product.service";
 
+
 const createProduct = async (req: Request, res: Response) => {
     try {
         const productData = req.body;
@@ -114,6 +115,7 @@ const searchSingleProduct = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
+
 
 export const productController = {
     createProduct,

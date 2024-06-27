@@ -1,6 +1,7 @@
 import { TProduct } from "./product.interface";
 import productModel from "./product.model";
 
+
 const createProductIntoDB = async (payload: TProduct) => {
     const res = await productModel.create(payload);
     return res;
@@ -26,10 +27,12 @@ const singleProductDeleteIntoDB = async (id: string) => {
     return res;
 }
 
-const searchSingleProductIntoDB = async (productName: string | any) => {
-    const res = await productModel.findOne({ name: productName });
+const searchSingleProductIntoDB = async (searchTxt: string | any) => {
+    const searchTerm = RegExp(searchTxt, 'i');
+    const res = await productModel.find({ $or: [{ name: searchTerm }, { tags: searchTerm }] });
     return res;
 }
+
 
 export const productService = {
     createProductIntoDB,

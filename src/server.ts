@@ -5,6 +5,7 @@ import config from "./config";
 import { Server } from 'http';
 let server: Server;
 
+
 async function main() {
   try {
     await mongoose.connect(config.DB_URL as string);
