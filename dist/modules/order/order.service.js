@@ -29,6 +29,16 @@ const createOrderIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functio
         return res;
     }
 });
+const getAllOrderIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield order_model_1.default.find({});
+    return res;
+});
+const getSearchOrderIntoDB = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield order_model_1.default.find({ email });
+    return res;
+});
 exports.orderService = {
     createOrderIntoDB,
+    getAllOrderIntoDB,
+    getSearchOrderIntoDB,
 };

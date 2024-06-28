@@ -19,7 +19,19 @@ const createOrderIntoDB = async (payload: TOrder) => {
     }
 }
 
+const getAllOrderIntoDB = async () => {
+    const res = await orderModel.find({});
+    return res;
+}
+
+const getSearchOrderIntoDB = async (email: string) => {
+    const res = await orderModel.find({email});
+    return res;
+}
+
 
 export const orderService = {
     createOrderIntoDB,
+    getAllOrderIntoDB,
+    getSearchOrderIntoDB,
 }

@@ -30,6 +30,47 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         console.log(error);
     }
 });
+const getAllOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield order_service_1.orderService.getAllOrderIntoDB();
+        res.status(200).json({
+            success: true,
+            message: 'Order fetched successfully!',
+            data: result
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Product not found',
+            data: error
+        });
+        console.log(error);
+    }
+});
+const getSearchOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email } = req.query;
+        if (typeof email === 'string') {
+            const result = yield order_service_1.orderService.getSearchOrderIntoDB(email);
+            res.status(200).json({
+                success: true,
+                message: 'Order fetched successfully!',
+                data: result
+            });
+        }
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Product not found',
+            data: error
+        });
+        console.log(error);
+    }
+});
 exports.orderController = {
     createOrder,
+    getAllOrder,
+    getSearchOrder,
 };
