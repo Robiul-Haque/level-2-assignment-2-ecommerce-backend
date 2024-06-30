@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { orderService } from "./order.service";
 
+
+// create order
 const createOrder = async (req: Request, res: Response) => {
     try {
         const orderData = req.body;
@@ -13,36 +15,35 @@ const createOrder = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Product not found',
+            message: 'Order created unsuccessful',
             data: error
         })
         console.log(error);
     }
 }
 
-const getAllOrder = async (req: Request, res: Response) => {
-    try {
-        const result = await orderService.getAllOrderIntoDB();
-        res.status(200).json({
-            success: true,
-            message: 'Order fetched successfully!',
-            data: result
-        })
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Product not found',
-            data: error
-        })
-        console.log(error);
-    }
-}
-
-const getSearchOrder = async (req: Request, res: Response) => {
+// show all order or show order by email
+const getAllOrderOrGetOrderWithEmail = async (req: Request, res: Response) => {
     try {
         const { email } = req.query;
+
+        // check the email is not undefine, when email is available it should be work with business logic
         if (typeof email === 'string') {
-            const result = await orderService.getSearchOrderIntoDB(email);
+            const result = await orderService.getAllOrderOrGetOrderWithEmailIntoDB(email);
+            if (result.length > 0) {
+                res.status(200).json({
+                    success: true,
+                    message: 'Orders fetched successfully for user email!',
+                    data: result
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'No orders found for this user email!'
+                })
+            }
+        } else {
+            const result = await orderService.getAllOrderOrGetOrderWithEmailIntoDB(undefined);
             res.status(200).json({
                 success: true,
                 message: 'Order fetched successfully!',
@@ -52,15 +53,15 @@ const getSearchOrder = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Product not found',
+            message: 'Order not found',
             data: error
         })
         console.log(error);
     }
 }
 
+
 export const orderController = {
     createOrder,
-    getAllOrder,
-    getSearchOrder,
+    getAllOrderOrGetOrderWithEmail,
 }

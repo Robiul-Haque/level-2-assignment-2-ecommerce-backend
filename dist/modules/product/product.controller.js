@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productController = void 0;
 const product_service_1 = require("./product.service");
+// create product
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productData = req.body;
@@ -30,6 +31,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         console.log(error);
     }
 });
+// find all product
 const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield product_service_1.productService.getAllProductIntoDB();
@@ -48,6 +50,7 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         console.log(error);
     }
 });
+// find single product with product ID
 const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -67,6 +70,7 @@ const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
         console.log(error);
     }
 });
+// update single product with product ID
 const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -87,6 +91,7 @@ const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
         console.log(error);
     }
 });
+// delete single product with product ID
 const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -106,6 +111,7 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
         console.log(error);
     }
 });
+// search single product by name or tag name
 const searchSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { searchTerm } = req.query;

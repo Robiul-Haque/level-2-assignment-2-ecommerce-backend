@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { productService } from "./product.service";
 
 
+// create product
 const createProduct = async (req: Request, res: Response) => {
     try {
         const productData = req.body;
@@ -21,6 +22,7 @@ const createProduct = async (req: Request, res: Response) => {
     }
 }
 
+// find all product
 const getAllProduct = async (req: Request, res: Response) => {
     try {
         const result = await productService.getAllProductIntoDB();
@@ -39,6 +41,7 @@ const getAllProduct = async (req: Request, res: Response) => {
     }
 }
 
+// find single product with product ID
 const getSingleProduct = async (req: Request, res: Response) => {
     try {
         const { productId } = req.params;
@@ -58,6 +61,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
     }
 }
 
+// update single product with product ID
 const updateSingleProduct = async (req: Request, res: Response) => {
     try {
         const { productId } = req.params;
@@ -78,6 +82,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
     }
 }
 
+// delete single product with product ID
 const deleteSingleProduct = async (req: Request, res: Response) => {
     try {
         const { productId } = req.params;
@@ -97,6 +102,7 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
     }
 }
 
+// search single product by name or tag name
 const searchSingleProduct = async (req: Request, res: Response) => {
     try {
         const { searchTerm } = req.query;

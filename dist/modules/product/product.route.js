@@ -7,6 +7,7 @@ exports.productRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const product_controller_1 = require("./product.controller");
+// product routes
 router.post('/create-product', product_controller_1.productController.createProduct);
 router.get('/get-all-product', product_controller_1.productController.getAllProduct);
 router.get('/:productId', product_controller_1.productController.getSingleProduct);

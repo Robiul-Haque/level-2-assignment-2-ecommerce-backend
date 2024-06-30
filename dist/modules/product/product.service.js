@@ -14,26 +14,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productService = void 0;
 const product_model_1 = __importDefault(require("./product.model"));
+// create product
 const createProductIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.create(payload);
     return res;
 });
+// find all product
 const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.findOne({});
     return res;
 });
+// find single product with product ID
 const getSingleProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.findOne({ _id: id });
     return res;
 });
+// update single product with product ID
 const singleProductUpdateIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.findByIdAndUpdate({ _id: id }, { $set: payload });
     return res;
 });
+// delete single product with product ID
 const singleProductDeleteIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield product_model_1.default.deleteOne({ _id: id });
     return res;
 });
+// search single product by name or tags
 const searchSingleProductIntoDB = (searchTxt) => __awaiter(void 0, void 0, void 0, function* () {
     const searchTerm = RegExp(searchTxt, 'i');
     const res = yield product_model_1.default.find({ $or: [{ name: searchTerm }, { tags: searchTerm }] });

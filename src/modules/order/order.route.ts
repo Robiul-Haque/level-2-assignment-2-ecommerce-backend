@@ -3,9 +3,9 @@ import { orderController } from "./order.controller";
 const router = express.Router();
 
 
+// order routes
 router.post('/', orderController.createOrder);
-router.get('/', orderController.getAllOrder);
-router.get('/search', orderController.getSearchOrder);
+router.get('', orderController.getAllOrderOrGetOrderWithEmail);
 
 
 export const orderRouter = router;
