@@ -31,12 +31,11 @@ const singleProductDeleteIntoDB = async (id: string) => {
 }
 
 // search single product by name or tags
-const searchSingleProductIntoDB = async (searchTxt: string | any) => {
+const searchSingleProductIntoDB = async (searchTxt: string) => {
     const searchTerm = RegExp(searchTxt, 'i');
     const res = await productModel.find({ $or: [{ name: searchTerm }, { tags: searchTerm }] });
     return res;
 }
-
 
 export const productService = {
     createProductIntoDB,

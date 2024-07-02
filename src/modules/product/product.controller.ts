@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { productService } from "./product.service";
 import productValidationSchema from "./product.validation";
 
-
 // create product
 const createProduct = async (req: Request, res: Response) => {
     try {
@@ -108,12 +107,14 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
 const searchSingleProduct = async (req: Request, res: Response) => {
     try {
         const { searchTerm } = req.query;
-        const result = await productService.searchSingleProductIntoDB(searchTerm);
-        res.status(200).json({
-            success: true,
-            message: `Products matching search term '${searchTerm}' fetched successfully!`,
-            data: result
-        });
+        if (typeof searchTerm === 'string') {
+            const result = await productService.searchSingleProductIntoDB(searchTerm);
+            res.status(200).json({
+                success: true,
+                message: `Products matching search term '${searchTerm}' fetched successfully!`,
+                data: result
+            });
+        }
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -123,7 +124,6 @@ const searchSingleProduct = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
-
 
 export const productController = {
     createProduct,

@@ -2,7 +2,6 @@ import productModel from "../product/product.model";
 import { TOrder } from "./order.interface";
 import orderModel from "./order.model";
 
-
 // create order
 const createOrderIntoDB = async (payload: TOrder) => {
     const { productId, quantity } = payload;
@@ -33,7 +32,6 @@ const getAllOrderOrGetOrderWithEmailIntoDB = async (email: string | undefined) =
         return res
     }
 }
-
 
 export const orderService = {
     createOrderIntoDB,

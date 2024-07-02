@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { TInventory, TProduct, TVariant } from './product.interface';
 
-
 const variantSchema = new Schema<TVariant>({
     type: { type: String, required: true },
     value: { type: String, required: true }
@@ -23,6 +22,5 @@ const productSchema = new Schema<TProduct>({
 });
 
 const productModel = model('Product', productSchema);
-
 
 export default productModel;

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { orderService } from "./order.service";
 import orderValidationSchema from "./order.validation";
 
-
 // create order
 const createOrder = async (req: Request, res: Response) => {
     try {
@@ -62,7 +61,6 @@ const getAllOrderOrGetOrderWithEmail = async (req: Request, res: Response) => {
         console.log(error);
     }
 }
-
 
 export const orderController = {
     createOrder,
