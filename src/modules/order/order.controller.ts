@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { orderService } from "./order.service";
+import orderValidationSchema from "./order.validation";
 
 
 // create order
 const createOrder = async (req: Request, res: Response) => {
     try {
         const orderData = req.body;
-        const result = await orderService.createOrderIntoDB(orderData);
+        // order data validate with zod
+        const validateOrderData = orderValidationSchema.parse(orderData);
+        const result = await orderService.createOrderIntoDB(validateOrderData);
         res.status(200).json({
             success: true,
             message: 'Order created successfully!',
@@ -39,7 +42,7 @@ const getAllOrderOrGetOrderWithEmail = async (req: Request, res: Response) => {
             } else {
                 res.status(404).json({
                     success: false,
-                    message: 'No orders found for this user email!'
+                    message: 'Order not found'
                 })
             }
         } else {
@@ -53,7 +56,7 @@ const getAllOrderOrGetOrderWithEmail = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Order not found',
+            message: 'Order fetched unsuccessfully!',
             data: error
         })
         console.log(error);
