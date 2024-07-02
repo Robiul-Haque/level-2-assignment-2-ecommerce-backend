@@ -3,7 +3,7 @@ import { z } from "zod";
 const productValidationSchema = z.object({
     name: z.string(),
     description: z.string(),
-    price: z.number().int().min(10),
+    price: z.number().min(10),
     category: z.string(),
     tags: z.array(z.string()),
     variants: z.array(
