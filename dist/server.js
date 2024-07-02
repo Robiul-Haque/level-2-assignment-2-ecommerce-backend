@@ -12,16 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// getting-started.js
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
 const config_1 = __importDefault(require("./config"));
-let server;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield mongoose_1.default.connect(config_1.default.DB_URL);
-            server = app_1.default.listen(config_1.default.PORT, () => {
+            app_1.default.listen(config_1.default.PORT, () => {
                 console.log(`E-com app listening on port ${config_1.default.PORT}`);
             });
         }

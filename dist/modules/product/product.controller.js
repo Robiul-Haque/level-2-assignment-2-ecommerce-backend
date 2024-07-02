@@ -81,7 +81,8 @@ const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const { productId } = req.params;
         const productData = req.body;
-        yield product_service_1.productService.singleProductUpdateIntoDB(productId, productData);
+        const validateProductUpdateData = product_validation_1.default.parse(productData);
+        yield product_service_1.productService.singleProductUpdateIntoDB(productId, validateProductUpdateData);
         res.status(200).json({
             success: true,
             message: 'Product update successfully!',
@@ -121,12 +122,14 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
 const searchSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { searchTerm } = req.query;
-        const result = yield product_service_1.productService.searchSingleProductIntoDB(searchTerm);
-        res.status(200).json({
-            success: true,
-            message: `Products matching search term '${searchTerm}' fetched successfully!`,
-            data: result
-        });
+        if (typeof searchTerm === 'string') {
+            const result = yield product_service_1.productService.searchSingleProductIntoDB(searchTerm);
+            res.status(200).json({
+                success: true,
+                message: `Products matching search term '${searchTerm}' fetched successfully!`,
+                data: result
+            });
+        }
     }
     catch (error) {
         res.status(500).json({

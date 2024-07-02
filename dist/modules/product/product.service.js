@@ -21,7 +21,7 @@ const createProductIntoDB = (payload) => __awaiter(void 0, void 0, void 0, funct
 });
 // find all product
 const getAllProductIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield product_model_1.default.findOne({});
+    const res = yield product_model_1.default.find({});
     return res;
 });
 // find single product with product ID

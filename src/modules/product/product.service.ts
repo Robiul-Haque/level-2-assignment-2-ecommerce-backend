@@ -9,7 +9,7 @@ const createProductIntoDB = async (payload: TProduct) => {
 
 // find all product
 const getAllProductIntoDB = async () => {
-    const res = await productModel.findOne({});
+    const res = await productModel.find({});
     return res;
 }
 // find single product with product ID
