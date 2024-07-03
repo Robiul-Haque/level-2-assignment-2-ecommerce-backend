@@ -6,9 +6,8 @@
   "scripts": {
     "lint": "npx eslint src --ignore-pattern .ts",
     "lint:fix": "npx eslint src --fix",
-    "start:dev": "nodemon ./dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
