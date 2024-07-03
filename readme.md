@@ -1,4 +1,4 @@
-####How to run this backend project in local host.
+### How to run this backend project in a local host.
 
   * download this git repo on the local machine
   * Open your project terminal and write **npm install**
